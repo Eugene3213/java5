@@ -5,26 +5,26 @@ public class Exam1_1 {
 
 	public static void main(String[] args) {
 
-		/* ÀÏ¹İ randomÇü½Ä (random double ÀÚ·áÇü)
+		/* ì¼ë°˜ randomí˜•ì‹ (random double ìë£Œí˜•)
 		 int pc =(int)(math.random()*10+1); */
 		 
 		Exam2_1 ex2=new Exam2_1();
 		
 		Scanner sc=new Scanner(System.in);
-		//utilÀ» ÀÌ¿ëÇÑ randomÇü½Ä
+		//utilì„ ì´ìš©í•œ randomí˜•ì‹
 		Random r=new Random();
 		int pc= r.nextInt(10)+1;
 		
 		int w=5;
 		do {
-			System.out.println("ÃÑ ±âÈ¸´Â 5¹ø ³²¾Ò½À´Ï´Ù. 1~10±îÁö ¹øÈ£ Áß ÇÏ³ªÀÇ ¹øÈ£");
+			System.out.println("ì´ ê¸°íšŒëŠ”"+ w + "ë²ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤. 1~10ê¹Œì§€ ë²ˆí˜¸ ì¤‘ í•˜ë‚˜ì˜ ë²ˆí˜¸");
 			int user=sc.nextInt();
 			ex2.randomck(pc,user);
 			
 			String out =ex2.result();
 			System.out.println(out);
 		
-			int check=out.indexOf("Á¤´ä");	//indexof ´Ü¾î °Ë»ö¿¡ »ç¿ë.-1:¾øÀ½ , 0:ÀÖÀ½
+			int check=out.indexOf("ì •ë‹µ");	//indexof ë‹¨ì–´ ê²€ìƒ‰ì— ì‚¬ìš©.-1:ì—†ìŒ , 0:ìˆìŒ
 			if(check==0) {
 				break;
 			}
