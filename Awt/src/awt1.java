@@ -1,56 +1,56 @@
+
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class awt1 {
-
-	//GUI 모드 : AWT(abstract window tools, JAVA7 사용), SWING( AWT+ 그래픽 상향 버전)
-	//CUI 모드 : Scanner
 	
-	//SWING : JFrame -> JPanel -> JObject
+	public awt1() {
+		
+		
+	}
 	
 	public static void main(String[] args) {
-		/* AWT 생성방식
-		Frame -> Panel -> Object (생성순서)
-		Object -> Panel-> Frame (적용순서) */
+		//Frame > Bound > Object
+		Frame fr = new Frame(); //창
+		                                                                        
+		fr.setTitle("AWT 기초 화면");
+		fr.setVisible(true);
+		fr.setLayout(null); //패널을 사용 안함.
+		fr.setBounds(150,150,500,500); //(화면 X축, 화면 Y축, 가로크기, 세로크기)
 		
-		popclose pc =new popclose();
+		Button btn = new Button("클릭");
+		Button closebtn = new Button("닫기");
+		Label msg = new Label("");
 		
-		Frame fr = new Frame();			//프레임 창
-		fr.setTitle("사용자 로그인");		//창 이름
-		fr.setSize(500,500);			//창 크기
-		fr.setVisible(true);			//사용 유무
+		//msg.setBackground(Color.red); setBackground(Color.blue) 색상 입력
+		btn.setBounds(40,40,100,30);
+		closebtn.setBounds(160,40,100,30);
+		msg.setBounds(40,100,300,30);
 		
-		fr.addWindowListener(pc);		//awt 메소드를 상속 받아서 처리
+		//Object를 Frame에 적용하게 됩니다.
+		fr.add(msg);
+		fr.add(btn);
+		fr.add(closebtn);
 		
-		Panel pa=new Panel();			//패널
+		//addActionListener(버튼) : 이벤트 메소드 단, this 사용 절대 안함
+		closebtn.addActionListener(new ActionListener() {
+			//new ActionListener() : Override 메소드 자동생성
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
 		
-		CheckboxGroup radio =new CheckboxGroup();	//체크박스 그룹설정
+				
+			}
+		});
 		
-		TextField id =new TextField(10);		//TextField 10자까지
-		TextField pw =new TextField(10);
-		TextField sa = new TextField("사원번호를 입력하세요");		//입력 데이터가 미리 적용됨0
-		Button b1=new Button("로그인");	//오브잭트(Object)
-		Checkbox c1 =new Checkbox("자동로그인");
-		Checkbox c2=new Checkbox("동의함",false,radio);
-		Checkbox c3=new Checkbox("동의함",true,radio);
-			
-		pa.add(c3);
-		pa.add(c2);
-		pa.add(c1);
-		pa.add(sa);
-		pa.add(id);
-		pa.add(pw);
-		pa.add(b1);			//add 추가 object를 panel에 적
-		fr.add(pa);			// panel을 frame에 적용		
-
-	}
-
-}
-class popclose extends WindowAdapter{
-	public void windowClosing(WindowEvent a) {
-		System.out.println("프로그램을 종료 합니다");
-		System.exit(0);
-		System.gc();
+		btn.addActionListener(new ActionListener() {
+			String a ="홍길동"; //addActionListener : 이벤트 메소드 필드에 String을 생성
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				msg.setText(this.a);//this를 이용하여 핸들링 가능함.
+			}
+		});
+				
 	}
 }
