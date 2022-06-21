@@ -1,0 +1,31 @@
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+
+public class file2 {
+
+	public static void main(String[] args) throws IOException {
+		try {
+			FileReader fr = new FileReader("C:\\java5\\File_Stream\\src//list.txt",Charset.forName("EUCKR"));	//Charset.forName : JAVA12 -> EUCKR(ANSI),UTF8,UTF16
+			//FileReader fr = new FileReader("C:\\java5\\File_Stream\\src//list.txt");			
+			//System.out.println(fr.getEncoding()); //인코더 형식을 확인 FileReader
+			//System.out.println(fr.read());		//데이터 크기
+			//System.out.println(m); 			//-1:내용이 없음 (더 이상 문자가 없을 경우)
+			while(true) {			//loop를 활용하여 해당 파일에 문자를 모두 가져옴
+				int m=fr.read();
+				System.out.print((char)m);
+				if(m==-1) {			//더 이상 가져올 문자가 없을 경우 loop 빠져나감
+					break;
+				}
+			}
+			fr.close();  //FileReader를 종료함
+		}catch(Exception z) {
+			if(z.getMessage()!=null) {
+				System.out.println(z);
+			}
+		}
+		
+
+	}
+
+}
